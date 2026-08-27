@@ -15,6 +15,21 @@ st.set_page_config(
     layout="centered",
 )
 
+# Streamlit 기본 메뉴, 우측 상단 툴바(Deploy 버튼 포함), 하단 "Made with Streamlit" 배지/푸터를 숨깁니다.
+HIDE_STREAMLIT_STYLE = """
+    <style>
+        #MainMenu {visibility: hidden;}
+        header {visibility: hidden;}
+        footer {visibility: hidden;}
+        div[data-testid="stToolbar"] {visibility: hidden; height: 0; position: fixed;}
+        div[data-testid="stDecoration"] {visibility: hidden; height: 0; position: fixed;}
+        div[data-testid="stStatusWidget"] {visibility: hidden; height: 0; position: fixed;}
+        div[class^="viewerBadge_container"] {display: none !important;}
+        a[class^="viewerBadge_link"] {display: none !important;}
+    </style>
+"""
+st.markdown(HIDE_STREAMLIT_STYLE, unsafe_allow_html=True)
+
 st.title("디지털곰마드 수강생 전용 엑셀 분할기 🛠️")
 st.subheader("대용량 엑셀 데이터를 원하는 행 수만큼 깔끔하게 나누어 드립니다.")
 st.divider()
