@@ -7,7 +7,7 @@ import pandas as pd
 import streamlit as st
 
 # ⚠️ 비밀번호를 바꾸고 싶으면 아래 값만 수정하세요.
-SECRET_PASSWORD = "GOMMAD2026"
+SECRET_PASSWORD = "gmexcel2026"
 
 st.set_page_config(
     page_title="디지털곰마드 엑셀 분할기",
