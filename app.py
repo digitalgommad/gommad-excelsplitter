@@ -6,8 +6,11 @@ import zipfile
 import pandas as pd
 import streamlit as st
 
-# ⚠️ 비밀번호를 바꾸고 싶으면 아래 값만 수정하세요.
-SECRET_PASSWORD = "gmexcel2026"
+# ⚠️ 비밀번호는 코드에 직접 넣지 않고 Streamlit Secrets에서 불러옵니다.
+# - 로컬: .streamlit/secrets.toml 파일에 SECRET_PASSWORD = "..." 형태로 저장 (git에는 올라가지 않음)
+# - 배포(Streamlit Cloud): 앱 대시보드 > Settings > Secrets 에서 동일하게 설정
+# secrets.toml이 없거나 값이 없으면 아래 기본값을 사용합니다.
+SECRET_PASSWORD = st.secrets.get("SECRET_PASSWORD", "gmexcel2026")
 
 st.set_page_config(
     page_title="디지털곰마드 엑셀 분할기",
