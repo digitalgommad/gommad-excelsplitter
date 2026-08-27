@@ -6,17 +6,20 @@ import zipfile
 import pandas as pd
 import streamlit as st
 
-# ⚠️ 비밀번호는 코드에 직접 넣지 않고 Streamlit Secrets에서 불러옵니다.
-# - 로컬: .streamlit/secrets.toml 파일에 SECRET_PASSWORD = "..." 형태로 저장 (git에는 올라가지 않음)
-# - 배포(Streamlit Cloud): 앱 대시보드 > Settings > Secrets 에서 동일하게 설정
-# secrets.toml이 없거나 값이 없으면 아래 기본값을 사용합니다.
-SECRET_PASSWORD = st.secrets.get("SECRET_PASSWORD", "gmexcel2026")
-
 st.set_page_config(
     page_title="디지털곰마드 엑셀 분할기",
     page_icon="🛠️",
     layout="centered",
 )
+
+# ⚠️ 비밀번호는 코드에 넣지 않고 Streamlit Secrets에서만 불러옵니다.
+# - 로컬: .streamlit/secrets.toml 에 SECRET_PASSWORD = "..." 저장 (git에는 올라가지 않음)
+# - 배포: 앱 Settings > Secrets 에서 동일하게 설정
+try:
+    SECRET_PASSWORD = st.secrets["SECRET_PASSWORD"]
+except (KeyError, FileNotFoundError):
+    st.error("비밀번호(SECRET_PASSWORD)가 Secrets에 설정되어 있지 않습니다. 앱 관리자가 Secrets를 등록해 주세요.")
+    st.stop()
 
 # Streamlit 기본 메뉴, 우측 상단 툴바(Deploy 버튼 포함), 하단 "Made with Streamlit" 배지/푸터를 숨깁니다.
 HIDE_STREAMLIT_STYLE = """
